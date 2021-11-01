@@ -8,3 +8,4 @@ Zahtevi:
 - Add Item funkcionalnost unutar svake kolone
 - Reorder elemenata unutar kolone i izmedju razlicitih kolona
 - Sacuvati izmene i kada se refreshuje stranica
+- Mogucnost editovanja kartice
