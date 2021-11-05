@@ -1,105 +1,274 @@
-@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700&display=swap");
-:root {
-    --light-gray: rgb(231, 231, 231);
-    --dark-gray: #383838;
-    --gray: #e0e0e0;
-    --line-color: #383838;
-    --light-blue: #dfedec;
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Commissioner", sans-serif;
-    font-size: 16px;
+    font-family: 'Roboto', Helvetica, sans-serif;
 }
 
 body {
-    background-color: var(--light-blue);
+    background-color: #bacbcb75;
+    overflow-x: hidden;
+    background: url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/690360c54dbfe62a0fa6c2e545a017bf/photo-1428908728789-d2de25dbd4e2.jpg") center / cover no-repeat;
+    width: 100%;
+    height: 100vh;
+    overflow-y: hidden;
 }
 
-.container {
-    max-width: 1140px;
-    border: 2px solid red;
-    margin: 0 auto;
+.modal {
+    display: none; 
+    position: absolute; 
+    z-index: 1; 
+    padding-top: 175px;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.6);
+  }
+  
+  .modal__content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 40px;
+    border: 1px solid rgb(189, 181, 181);
+    width: 30%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .modal__text {
+    font-family: 'Roboto', Helvetica, sans-serif; 
+    width: 300px;
+    outline: none;
+    padding: 10px 0;
+    font-size: 15px;
+    box-shadow: 0px 1px 3px 1px #888888;
+    text-indent: 10px;
+    border-radius: 3px;
+  }
+
+  .modal__close {
+    color: #aaaaaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: -7px;
+    right: 5px;
+  }
+  
+  .modal__close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .modal__delete {
+      margin-left: 10px;
+      padding: 5px;
+      cursor: pointer;
+      background-color: rgb(192, 22, 17);
+      color: white;
+      border-radius: 3px;
+  }
+
+  .modal__delete:hover {
+    background-color: rgb(236, 30, 22);
 }
 
-.header {
-    margin: 30px auto
-}
-
-.header__title {
+.fas {
+    color: var(--dark-gray);
     font-size: 20px;
-    text-align: center;
-}
-
-.board {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    margin: 20px;
-}
-
-.board__row {
-    border: 2px solid blue;
-    padding: 20px;
-}
-
-.board__row__title {
-    font-size: 18px;
-    text-align: center;
-}
-
-.board__row__item {
-    padding: 10px;
-    border: 2px solid green;
-    margin: 10px auto;
-    display: flex;
-    cursor: move;
-}
-
-.board__row__item__title {
-    line-height: 18px;
-    font-size: 16px;
-    padding: 3px;
-    cursor: default;
-}
-
-.board__row__item--edit {
-    font-size: 12px;
-    line-height: 18px;
-    margin-left: 10px;
-    opacity: 0;
-    background-color: var(--light-gray);
-    padding: 3px;
-    letter-spacing: 0.5px;
-    border-radius: 5px;
     cursor: pointer;
 }
 
-.board__row__item:hover .board__row__item--edit {
-    opacity: 1;
-}
-
-.board__row__item--edit:hover {
-    opacity: 1;
-    background-color: var(--gray);
-}
-
-.board .board__row__add {
-    display: block;
+.app {
+    display: flex;
+    /* flex-direction: row; */
+    width: 100%;
+    height: 85vh;
+    padding: 20px 10px;
+    background: url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/690360c54dbfe62a0fa6c2e545a017bf/photo-1428908728789-d2de25dbd4e2.jpg") center / cover no-repeat;
+    max-width: 1140px;
     margin: 0 auto;
-    padding: 3px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    box-shadow: 0px 0px 20px 5px #aaaaaa;
+    /* border: 2px solid blue; */
+}
+
+.boards {
+    display: flex;
+    overflow-y: auto;
+    /* width: calc(100% - 20px); */
+    /* scroll-padding: 50px; */
+    /* overflow-y: scroll; */
+}
+
+.boards__item {
+    display: flex;
+    flex-direction: column;
+    align-self: baseline;
+    max-width: 250px;
+    min-width: 200px;
+    width: 100%;
+    background-color: #ebecf0;
+    margin: 0 15px;
+    padding: 10px;
+    transition: .3s all ease;
+    border-radius: 3px;
+}
+
+.title {
+    padding: 5px;
+    font-size: 20px;
+    color: #1f2020;
+}
+
+.title:focus {
+    outline: 1px solid rgba(168, 168, 168, .45);
+}
+
+.list {
+    min-height: 40px;
+}
+
+.list__item {
+    background-color: #fefefe;
+    border-radius: 3px;
+    padding: 15px;
+    text-align: center;
+    margin: 8px 0;
+    cursor: pointer;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    position: relative;
+}
+
+.form {
+    display: none;
+    border-radius: 3px;
+    margin-top: auto;
+}
+
+.textarea {
+    resize: none;
+    height: 60px;
+    border-radius: 3px;
+    border: none;
+    background: white;
+    padding: 10px;
+    width: 100%;
+}
+
+.textarea:focus {
     outline: none;
 }
 
-.dragging {
-    opacity: 0.5;
+.buttons {
+    display: flex;
 }
 
-.board__row__items {
-    border: 2px solid orange;
-    padding: 10px;
-    margin: 10px;
+.add__item-btn {
+    font-family: 'Roboto', Helvetica, sans-serif;
+    background: rgb(0, 121, 191);
+    border: none;
+    height: 35px;
+    cursor: pointer;
+    color: white;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    width: 100%;
+}
+
+.cancel__item-btn {
+    font-family: 'Roboto', Helvetica, sans-serif;
+    padding: 0 10px;
+    background: rgb(160, 17, 12);
+    color: white;
+    border: none;
+    height: 35px;
+    cursor: pointer;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.add__btn,
+.delete__board {
+    font-family: 'Roboto', Helvetica, sans-serif;
+    height: 30px;
+    background: rgba(155, 155, 155, .3);
+    border-radius: 3px;
+    margin-top: 5px;
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    padding-left: 10px;
+    color: #1f2020;
+    cursor: pointer;
+    /* line-height: 20px; */
+}
+
+.add__btn:hover,
+.delete__board:hover {
+    background: rgba(192, 191, 191, 0.3);
+}
+
+.add__btn-plus {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #1f2020;
+}
+
+.delete-btn-x,
+.fas {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #1f2020;
+    display: inline-block;
+}
+
+.button {
+    display: block;
+    font-family: 'Roboto', Helvetica, sans-serif;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 121, 191);
+    border: none;
+    width: 150px;
+    cursor: pointer;
+    position: relative;
+    /* top: 50px;
+    left: 50px; */
+    /* transform: translate(-50%); */
+    color: white;
+    border-radius: 3px;
+    font-size: 14px;
+    flex: 0 0 150px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.header-title {
+    text-align: center;
+    color: rgb(0, 121, 191);
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.notvisible {
+    display: none;
 }
